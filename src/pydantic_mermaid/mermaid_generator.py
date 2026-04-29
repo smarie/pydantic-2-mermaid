@@ -41,10 +41,9 @@ class MermaidGenerator:
                     self.allow_set = self.allow_set | self.graph.service_clients[parent].intersection(_all_in_dict)
 
         if root != "" and relations & Relations.Inheritance:
-            _all_in_dict = set(self.graph.class_dict)
             for parent in reversed_class_names:
                 if parent in self.allow_set and parent in self.graph.parent_children:
-                    self.allow_set = self.allow_set | self.graph.parent_children[parent].intersection(_all_in_dict)
+                    self.allow_set = self.allow_set | self.graph.parent_children[parent]
 
         if root == "":
             self.allow_set = set(self.graph.class_dict)
